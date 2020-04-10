@@ -25,21 +25,31 @@ public class MovePlayer : MonoBehaviour
         if (!Player.lose)
         {           
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            if(mousePos.x > (m_Transform.position.x + 0.075f) || mousePos.x < (m_Transform.position.x - 0.075f))
-            {
-                anim.SetBool("Speed", true);
-                if (mousePos.x > m_Transform.position.x)
+         //  if(mousePos.x > (m_Transform.position.x + 0.0723f) || mousePos.x < (m_Transform.position.x - 0.0723f))
+          //  {
+                //anim.SetBool("Speed", true);
+                if (mousePos.x > (m_Transform.position.x + 0.05f))
                 {
-                    mousePos.x = 2.5f;
                     m_SpriteRenderer.flipX = false;
+                    if (mousePos.x > (m_Transform.position.x + 0.0723f))
+                    {
+                        mousePos.x = 2.5f;
+                        anim.SetBool("Speed", true);
+                    }
+                    
                 }
-                if (mousePos.x < m_Transform.position.x)
+                if (mousePos.x < (m_Transform.position.x - 0.05f))
                 {
-                    mousePos.x = -2.5f;
                     m_SpriteRenderer.flipX = true;
+                    if (mousePos.x > (m_Transform.position.x - 0.0723f))
+                    {
+                        mousePos.x = -2.5f;
+                        anim.SetBool("Speed", true);
+                    }
+
                 }
-            }
-            
+            // }
+
             //mousePos.x = mousePos.x > 2.5f ? 2.5f : mousePos.x;
             //mousePos.x = mousePos.x < -2.5f ? -2.5f : mousePos.x;
             player.position = Vector2.MoveTowards(player.position,
